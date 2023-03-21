@@ -2,7 +2,7 @@
 
 ## Technologies used
 - Python Flask Microframework for the backend
-- Reacr for the frontend
+- React for the frontend
 - Postgres for the database
 - Docker and docker-compose for the setup
 
