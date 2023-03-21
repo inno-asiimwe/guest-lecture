@@ -1,0 +1,33 @@
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: url-shortener-api
+    container_name: stord-url-shortener-api
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+  database:
+    image: postgres:10.8-alpine
+    restart: always
+    container_name: stord-postgres-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: url-shortener
+    ports:
+      - "4400:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: url-shortener-frontend
+    container_name: stord-url-shortener-frontend
+    ports:
+      - "3000:3000"
+volumes:
+  db-data:
